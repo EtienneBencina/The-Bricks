@@ -9,7 +9,7 @@ function drawIt() {
     var x = canvas.width/2;
     var y = 300;
     var dx = 0;
-    var dy = 5;
+    var dy = 3;
     var WIDTH;
     var HEIGHT;
     var r = 10;
@@ -97,8 +97,8 @@ function drawIt() {
             }
         }
 
-        rowheight = BRICKHEIGHT + PADDING + r / 2; //Smo zadeli opeko?
-        colwidth = BRICKWIDTH + PADDING + r / 2;
+        rowheight = BRICKHEIGHT + PADDING + 3.5 ; //Smo zadeli opeko?
+        colwidth = BRICKWIDTH + PADDING + 3.5 ;
         row = Math.floor(y / rowheight);
         col = Math.floor(x / colwidth);
         //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
@@ -184,11 +184,11 @@ function drawIt() {
     var PADDING;
 
     function initbricks() { //inicializacija opek - polnjenje v tabelo
-        NROWS = 5;
-        NCOLS = 5;
-        BRICKWIDTH = (WIDTH / NCOLS) - 1;
-        BRICKHEIGHT = 15;
-        PADDING = 1;
+        NROWS = 3;
+        NCOLS = 3;
+        BRICKWIDTH = (WIDTH / NCOLS) - 9;
+        BRICKHEIGHT = 30;
+        PADDING = 7;
         bricks = new Array(NROWS);
         for (i = 0; i < NROWS; i++) {
             bricks[i] = new Array(NCOLS);
