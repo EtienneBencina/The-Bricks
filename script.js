@@ -4,7 +4,9 @@ ctx.beginPath();
 ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
 ctx.closePath();
 ctx.fill();
-
+const brick = document.getElementById("brick");
+var brickxCoord=[];
+var brickyCoord=[];
 function drawIt() {
     var x = canvas.width/2;
     var y = 300;
@@ -85,15 +87,15 @@ function drawIt() {
             }
         }
         rect(paddlex, HEIGHT - paddleh, paddlew, paddleh);
-
+        brickxCoord=[];
+        brickyCoord=[];
         //riši opeke
         for (i = 0; i < NROWS; i++) {
             for (j = 0; j < NCOLS; j++) {
-                if (bricks[i][j] == 1) {
-                    rect((j * (BRICKWIDTH + PADDING)) + PADDING,
-                        (i * (BRICKHEIGHT + PADDING)) + PADDING,
-                        BRICKWIDTH, BRICKHEIGHT);
-                }
+                var brickx = j* (BRICKWIDTH+PADDING)+PADDING;
+                brickxCoord.push(brickx+10);
+                var bricky = i * (brickheight + padding) + padding;
+                brickyCoord.push(bricky + 10);
             }
         }
 
@@ -184,11 +186,11 @@ function drawIt() {
     var PADDING;
 
     function initbricks() { //inicializacija opek - polnjenje v tabelo
-        NROWS = 3;
-        NCOLS = 3;
-        BRICKWIDTH = (WIDTH / NCOLS) - 9;
-        BRICKHEIGHT = 30;
-        PADDING = 7;
+        NROWS = 5;
+        NCOLS = 5;
+        BRICKWIDTH = (WIDTH / NCOLS) - 18;
+        BRICKHEIGHT = 40;
+        PADDING = 15.7;
         bricks = new Array(NROWS);
         for (i = 0; i < NROWS; i++) {
             bricks[i] = new Array(NCOLS);
