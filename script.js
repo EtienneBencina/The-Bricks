@@ -7,6 +7,7 @@ ctx.fill();
 
 
 const mariobrick = document.getElementById("mariobrick");
+const question = document.getElementById("question");
 
 
 function drawIt() {
@@ -104,6 +105,16 @@ function drawIt() {
                     );
                     
                 }
+                else if(bricks[i][j]==2){
+                    ctx.drawImage(
+                        question,
+                        j*(BRICKHEIGHT+PADDING)+PADDING,
+                        i*(BRICKHEIGHT+PADDING)+PADDING,
+                        BRICKWIDTH,
+                        BRICKHEIGHT
+
+                    );
+                }
             }
         }
 
@@ -194,18 +205,66 @@ function drawIt() {
     var PADDING;
 
     function initbricks() { //inicializacija opek - polnjenje v tabelo
-        NROWS = 4;
-        NCOLS = 11;
+        NROWS = 5;
+        NCOLS = 5;
         BRICKWIDTH = 50;
         BRICKHEIGHT = 50;
         PADDING = 4;
-        bricks = new Array(NROWS);
-        for (i = 0; i < NROWS; i++) {
-            bricks[i] = new Array(NCOLS);
-            for (j = 0; j < NCOLS; j++) {
-                bricks[i][j] = 1;
-            }
-        }
+        bricksArray = [
+            [
+              [1, 1, 1, 1, 1],
+              [1, 1, 2, 1, 1],
+              [1, 2, 2, 2, 1],
+              [1, 1, 2, 1, 1],
+              [1, 1, 1, 1, 1],
+            ],
+            [
+              [2, 1, 2, 1, 2],
+              [1, 2, 1, 2, 1],
+              [2, 1, 2, 1, 2],
+              [1, 2, 1, 2, 1],
+              [2, 1, 2, 1, 2],
+            ],
+            [
+              [2, 1, 2, 1, 2],
+              [2, 1, 2, 1, 2],
+              [2, 1, 2, 1, 2],
+              [2, 1, 2, 1, 2],
+              [2, 1, 2, 1, 2],
+            ],
+            [
+              [2, 2, 2, 2, 2],
+              [1, 1, 1, 1, 1],
+              [2, 2, 2, 2, 2],
+              [1, 1, 1, 1, 1],
+              [2, 2, 2, 2, 2],
+            ],
+            [
+              [1, 1, 2, 1, 1],
+              [1, 2, 1, 2, 1],
+              [2, 1, 1, 1, 2],
+              [1, 2, 1, 2, 1],
+              [1, 1, 2, 1, 1],
+            ],
+            [
+              [1, 1, 2, 1, 1],
+              [1, 1, 2, 1, 1],
+              [2, 2, 2, 2, 2],
+              [1, 1, 2, 1, 1],
+              [1, 1, 2, 1, 1],
+            ],
+            [
+              [2, 1, 1, 1, 2],
+              [1, 2, 1, 2, 1],
+              [1, 1, 2, 1, 1],
+              [1, 2, 1, 2, 1],
+              [2, 1, 1, 1, 2],
+            ],
+          ];
+          let brickSelect = Math.floor(Math.random() * 7);
+          bricks = bricksArray[brickSelect];
+        
+        
     }
     initbricks();
 }
