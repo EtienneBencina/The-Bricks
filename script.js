@@ -94,10 +94,15 @@ function drawIt() {
         for (i = 0; i < NROWS; i++) {
             for (j = 0; j < NCOLS; j++) {
                 if (bricks[i][j] == 1) {
+                    ctx.drawImage(
+                        mariobrick,
+                        j*(BRICKHEIGHT+PADDING)+PADDING,
+                        i*(BRICKHEIGHT+PADDING)+PADDING,
+                        BRICKWIDTH,
+                        BRICKHEIGHT
+
+                    );
                     
-                    rect((j * (BRICKWIDTH + PADDING)) + PADDING,
-                        (i * (BRICKHEIGHT + PADDING)) + PADDING,
-                        BRICKWIDTH, BRICKHEIGHT);
                 }
             }
         }
@@ -189,11 +194,11 @@ function drawIt() {
     var PADDING;
 
     function initbricks() { //inicializacija opek - polnjenje v tabelo
-        NROWS = 3;
-        NCOLS = 3;
-        BRICKWIDTH = (WIDTH / NCOLS) - 9;
-        BRICKHEIGHT = 30;
-        PADDING = 7;
+        NROWS = 4;
+        NCOLS = 11;
+        BRICKWIDTH = 50;
+        BRICKHEIGHT = 50;
+        PADDING = 4;
         bricks = new Array(NROWS);
         for (i = 0; i < NROWS; i++) {
             bricks[i] = new Array(NCOLS);
