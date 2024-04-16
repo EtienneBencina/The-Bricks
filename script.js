@@ -4,11 +4,13 @@ ctx.beginPath();
 ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
 ctx.closePath();
 ctx.fill();
-const brick = document.getElementById("brick");
-var brickxCoord=[];
-var brickyCoord=[];
+
+
+const mariobrick = document.getElementById("mariobrick");
+
+
 function drawIt() {
-    var x = canvas.width/2;
+    var x = canvas.width / 2;
     var y = 300;
     var dx = 0;
     var dy = 3;
@@ -87,20 +89,21 @@ function drawIt() {
             }
         }
         rect(paddlex, HEIGHT - paddleh, paddlew, paddleh);
-        brickxCoord=[];
-        brickyCoord=[];
+
         //riši opeke
         for (i = 0; i < NROWS; i++) {
             for (j = 0; j < NCOLS; j++) {
-                var brickx = j* (BRICKWIDTH+PADDING)+PADDING;
-                brickxCoord.push(brickx+10);
-                var bricky = i * (brickheight + padding) + padding;
-                brickyCoord.push(bricky + 10);
+                if (bricks[i][j] == 1) {
+                    
+                    rect((j * (BRICKWIDTH + PADDING)) + PADDING,
+                        (i * (BRICKHEIGHT + PADDING)) + PADDING,
+                        BRICKWIDTH, BRICKHEIGHT);
+                }
             }
         }
 
-        rowheight = BRICKHEIGHT + PADDING + 3.5 ; //Smo zadeli opeko?
-        colwidth = BRICKWIDTH + PADDING + 3.5 ;
+        rowheight = BRICKHEIGHT + PADDING + 3.5; //Smo zadeli opeko?
+        colwidth = BRICKWIDTH + PADDING + 3.5;
         row = Math.floor(y / rowheight);
         col = Math.floor(x / colwidth);
         //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
@@ -114,11 +117,11 @@ function drawIt() {
         if (y + dy < 0 + r)
             dy = -dy;
         else if (y + dy > HEIGHT - r) {
-            start=false;
+            start = false;
             if (x > paddlex && x < paddlex + paddlew) {
                 dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
                 dy = -dy;
-                start=true;
+                start = true;
             }
             else if (y + dy > HEIGHT - r)
                 clearInterval(intervalId);
@@ -172,7 +175,7 @@ function drawIt() {
 
     function onMouseMove(evt) {
         if (evt.pageX > canvasMinX && evt.pageX < canvasMaxX) {
-            paddlex = evt.pageX - canvasMinX-paddlew/2;
+            paddlex = evt.pageX - canvasMinX - paddlew / 2;
         }
     }
     $(document).mousemove(onMouseMove);
@@ -186,11 +189,11 @@ function drawIt() {
     var PADDING;
 
     function initbricks() { //inicializacija opek - polnjenje v tabelo
-        NROWS = 5;
-        NCOLS = 5;
-        BRICKWIDTH = (WIDTH / NCOLS) - 18;
-        BRICKHEIGHT = 40;
-        PADDING = 15.7;
+        NROWS = 3;
+        NCOLS = 3;
+        BRICKWIDTH = (WIDTH / NCOLS) - 9;
+        BRICKHEIGHT = 30;
+        PADDING = 7;
         bricks = new Array(NROWS);
         for (i = 0; i < NROWS; i++) {
             bricks[i] = new Array(NCOLS);
