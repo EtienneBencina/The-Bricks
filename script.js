@@ -8,6 +8,7 @@ ctx.fill();
 
 const mariobrick = document.getElementById("mariobrick");
 const question = document.getElementById("question");
+const paddle = document.getElementById("paddle");
 
 
 function drawIt() {
@@ -157,11 +158,13 @@ function drawIt() {
     var paddleh;
     var paddlew;
 
+    
 
     function init_paddle() {
         paddlex = WIDTH / 2;
         paddleh = 10;
         paddlew = 75;
+        //ctx.drawImage(paddle, paddlex, height - paddleh - 5, paddlew, paddleh);
     }
 
 
