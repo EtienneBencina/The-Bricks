@@ -125,7 +125,12 @@ function drawIt() {
         //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
         if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
             dy = -dy; bricks[row][col] = 0;
-            tocke += 10; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+            tocke += 100; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+            $("#tocke").html(tocke);
+        }
+        else if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 2) {
+            dy = -dy; bricks[row][col] = 0;
+            tocke += 200; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
             $("#tocke").html(tocke);
         }
         if (x + dx > WIDTH - r || x + dx < 0 + r)
@@ -209,7 +214,7 @@ function drawIt() {
         NCOLS = 5;
         BRICKWIDTH = 50;
         BRICKHEIGHT = 50;
-        PADDING = 4;
+        PADDING = 20;
         bricksArray = [
             [
               [1, 1, 1, 1, 1],
