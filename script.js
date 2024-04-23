@@ -77,7 +77,7 @@ function drawIt() {
     //END LIBRARY CODE
     function draw() {
         clear();
-        ctx.drawImage(ball,x, y, 181,100);
+        ctx.drawImage(ball,x, y, 16,16);
         //premik ploščice levo in desno
         if (rightDown) {
             if ((paddlex + paddlew) < WIDTH) {
@@ -122,8 +122,8 @@ function drawIt() {
             }
         }
 
-        rowheight = BRICKHEIGHT + PADDING ; //Smo zadeli opeko?
-        colwidth = BRICKWIDTH + PADDING ;
+        rowheight = BRICKHEIGHT + PADDING /2; //Smo zadeli opeko?
+        colwidth = BRICKWIDTH + PADDING /2;
         row = Math.floor(y / rowheight);
         col = Math.floor(x / colwidth);
         //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
@@ -141,7 +141,7 @@ function drawIt() {
             dx = -dx;
         if (y + dy < 0 + r)
             dy = -dy;
-        else if (y + dy > HEIGHT - 50) {
+        else if (y + dy > HEIGHT - 30) {
             start = false;
             if (x > paddlex && x < paddlex + paddlew) {
                 dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
@@ -218,9 +218,9 @@ function drawIt() {
     function initbricks() { //inicializacija opek - polnjenje v tabelo
         NROWS = 5;
         NCOLS = 5;
-        BRICKWIDTH = 88;
-        BRICKHEIGHT = 30;
-        PADDING = 40;
+        BRICKWIDTH = 194;
+        BRICKHEIGHT = 45;
+        PADDING = 5;
         bricksArray = [
             [
               [1, 1, 1, 1, 1],
