@@ -9,11 +9,14 @@ ctx.fill();
 const mariobrick = document.getElementById("mariobrick");
 const question = document.getElementById("question");
 const paddle = document.getElementById("paddle");
+const ball = document.getElementById("ball");
+const redbrick = document.getElementById("redbrick");
+const bluebrick = document.getElementById("bluebrick");
 
 
 function drawIt() {
     var x = canvas.width / 2;
-    var y = 300;
+    var y = 350;
     var dx = 0;
     var dy = 3;
     var WIDTH;
@@ -74,7 +77,7 @@ function drawIt() {
     //END LIBRARY CODE
     function draw() {
         clear();
-        circle(x, y, 10);
+        ctx.drawImage(ball,x, y, 181,100);
         //premik ploščice levo in desno
         if (rightDown) {
             if ((paddlex + paddlew) < WIDTH) {
@@ -90,14 +93,14 @@ function drawIt() {
                 paddlex = 0;
             }
         }
-        rect(paddlex, HEIGHT - paddleh, paddlew, paddleh);
+        ctx.drawImage(paddle,paddlex, HEIGHT-paddleh, paddlew, paddleh);
 
         //riši opeke
         for (i = 0; i < NROWS; i++) {
             for (j = 0; j < NCOLS; j++) {
                 if (bricks[i][j] == 1) {
                     ctx.drawImage(
-                        mariobrick,
+                        redbrick,
                         j*(BRICKHEIGHT+PADDING)+PADDING,
                         i*(BRICKHEIGHT+PADDING)+PADDING,
                         BRICKWIDTH,
@@ -108,7 +111,7 @@ function drawIt() {
                 }
                 else if(bricks[i][j]==2){
                     ctx.drawImage(
-                        question,
+                        bluebrick,
                         j*(BRICKHEIGHT+PADDING)+PADDING,
                         i*(BRICKHEIGHT+PADDING)+PADDING,
                         BRICKWIDTH,
@@ -119,8 +122,8 @@ function drawIt() {
             }
         }
 
-        rowheight = BRICKHEIGHT + PADDING + 3.5; //Smo zadeli opeko?
-        colwidth = BRICKWIDTH + PADDING + 3.5;
+        rowheight = BRICKHEIGHT + PADDING ; //Smo zadeli opeko?
+        colwidth = BRICKWIDTH + PADDING ;
         row = Math.floor(y / rowheight);
         col = Math.floor(x / colwidth);
         //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
@@ -138,7 +141,7 @@ function drawIt() {
             dx = -dx;
         if (y + dy < 0 + r)
             dy = -dy;
-        else if (y + dy > HEIGHT - r) {
+        else if (y + dy > HEIGHT - 50) {
             start = false;
             if (x > paddlex && x < paddlex + paddlew) {
                 dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
@@ -162,9 +165,9 @@ function drawIt() {
 
     function init_paddle() {
         paddlex = WIDTH / 2;
-        paddleh = 10;
-        paddlew = 75;
-        //ctx.drawImage(paddle, paddlex, height - paddleh - 5, paddlew, paddleh);
+        paddleh = 20;
+        paddlew = 90;
+        
     }
 
 
@@ -215,9 +218,9 @@ function drawIt() {
     function initbricks() { //inicializacija opek - polnjenje v tabelo
         NROWS = 5;
         NCOLS = 5;
-        BRICKWIDTH = 50;
-        BRICKHEIGHT = 50;
-        PADDING = 20;
+        BRICKWIDTH = 88;
+        BRICKHEIGHT = 30;
+        PADDING = 40;
         bricksArray = [
             [
               [1, 1, 1, 1, 1],
