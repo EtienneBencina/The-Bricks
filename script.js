@@ -18,7 +18,7 @@ function drawIt() {
     var x = canvas.width / 2;
     var y = 350;
     var dx = 0;
-    var dy = 3;
+    var dy = 4;
     var WIDTH;
     var HEIGHT;
     var r = 10;
@@ -77,7 +77,7 @@ function drawIt() {
     //END LIBRARY CODE
     function draw() {
         clear();
-        ctx.drawImage(ball,x, y, 16,16);
+        ctx.drawImage(ball, x, y, 16, 16);
         //premik ploščice levo in desno
         if (rightDown) {
             if ((paddlex + paddlew) < WIDTH) {
@@ -93,27 +93,27 @@ function drawIt() {
                 paddlex = 0;
             }
         }
-        ctx.drawImage(paddle,paddlex, HEIGHT-paddleh, paddlew, paddleh);
+        ctx.drawImage(paddle, paddlex, HEIGHT - paddleh, paddlew, paddleh);
 
         //riši opeke
         for (i = 0; i < NROWS; i++) {
             for (j = 0; j < NCOLS; j++) {
                 if (bricks[i][j] == 1) {
                     ctx.drawImage(
-                        redbrick,
-                        j*(BRICKHEIGHT+PADDING)+PADDING,
-                        i*(BRICKHEIGHT+PADDING)+PADDING,
+                        mariobrick,
+                        j * (BRICKHEIGHT + PADDING) + PADDING,
+                        i * (BRICKHEIGHT + PADDING) + PADDING,
                         BRICKWIDTH,
                         BRICKHEIGHT
 
                     );
-                    
+
                 }
-                else if(bricks[i][j]==2){
+                else if (bricks[i][j] == 2) {
                     ctx.drawImage(
-                        bluebrick,
-                        j*(BRICKHEIGHT+PADDING)+PADDING,
-                        i*(BRICKHEIGHT+PADDING)+PADDING,
+                        question,
+                        j * (BRICKHEIGHT + PADDING) + PADDING,
+                        i * (BRICKHEIGHT + PADDING) + PADDING,
                         BRICKWIDTH,
                         BRICKHEIGHT
 
@@ -122,8 +122,8 @@ function drawIt() {
             }
         }
 
-        rowheight = BRICKHEIGHT + PADDING /2; //Smo zadeli opeko?
-        colwidth = BRICKWIDTH + PADDING /2;
+        rowheight = BRICKHEIGHT + PADDING; //Smo zadeli opeko?
+        colwidth = BRICKWIDTH + PADDING;
         row = Math.floor(y / rowheight);
         col = Math.floor(x / colwidth);
         //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
@@ -137,9 +137,9 @@ function drawIt() {
             tocke += 200; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
             $("#tocke").html(tocke);
         }
-        if (x + dx > WIDTH - r || x + dx < 0 + r)
+        if (x + dx > WIDTH -10 || x + dx < 0 - 5)
             dx = -dx;
-        if (y + dy < 0 + r)
+        if (y + dy < 0 )
             dy = -dy;
         else if (y + dy > HEIGHT - 30) {
             start = false;
@@ -161,13 +161,13 @@ function drawIt() {
     var paddleh;
     var paddlew;
 
-    
+
 
     function init_paddle() {
         paddlex = WIDTH / 2;
         paddleh = 20;
         paddlew = 90;
-        
+
     }
 
 
@@ -217,65 +217,65 @@ function drawIt() {
 
     function initbricks() { //inicializacija opek - polnjenje v tabelo
         NROWS = 5;
-        NCOLS = 5;
-        BRICKWIDTH = 194;
-        BRICKHEIGHT = 45;
-        PADDING = 5;
+        NCOLS = 6;
+        BRICKWIDTH = 50;
+        BRICKHEIGHT = 50;
+        PADDING = 1.6;
         bricksArray = [
             [
-              [1, 1, 1, 1, 1],
-              [1, 1, 2, 1, 1],
-              [1, 2, 2, 2, 1],
-              [1, 1, 2, 1, 1],
-              [1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 2, 2, 1, 1],
+                [1, 2, 1, 1, 2, 1],
+                [1, 1, 2, 2, 1, 1],
+                [1, 1, 1, 1, 1, 1],
             ],
             [
-              [2, 1, 2, 1, 2],
-              [1, 2, 1, 2, 1],
-              [2, 1, 2, 1, 2],
-              [1, 2, 1, 2, 1],
-              [2, 1, 2, 1, 2],
+                [2, 1, 2, 1, 2, 1],
+                [1, 2, 1, 2, 1, 1],
+                [2, 1, 2, 1, 2, 1],
+                [1, 2, 1, 2, 1, 1],
+                [2, 1, 2, 1, 2, 1],
             ],
             [
-              [2, 1, 2, 1, 2],
-              [2, 1, 2, 1, 2],
-              [2, 1, 2, 1, 2],
-              [2, 1, 2, 1, 2],
-              [2, 1, 2, 1, 2],
+                [2, 1, 2, 1, 2, 1],
+                [2, 1, 2, 1, 2, 1],
+                [2, 1, 2, 1, 2, 1],
+                [2, 1, 2, 1, 2, 1],
+                [2, 1, 2, 1, 2, 1],
             ],
             [
-              [2, 2, 2, 2, 2],
-              [1, 1, 1, 1, 1],
-              [2, 2, 2, 2, 2],
-              [1, 1, 1, 1, 1],
-              [2, 2, 2, 2, 2],
+                [2, 2, 2, 2, 2, 1],
+                [1, 1, 1, 1, 1, 1],
+                [2, 2, 2, 2, 2, 1],
+                [1, 1, 1, 1, 1, 1],
+                [2, 2, 2, 2, 2, 1],
             ],
             [
-              [1, 1, 2, 1, 1],
-              [1, 2, 1, 2, 1],
-              [2, 1, 1, 1, 2],
-              [1, 2, 1, 2, 1],
-              [1, 1, 2, 1, 1],
+                [1, 1, 2, 1, 1, 1],
+                [1, 2, 1, 2, 1, 1],
+                [2, 1, 1, 1, 2, 1],
+                [1, 2, 1, 2, 1, 1],
+                [1, 1, 2, 1, 1, 1],
             ],
             [
-              [1, 1, 2, 1, 1],
-              [1, 1, 2, 1, 1],
-              [2, 2, 2, 2, 2],
-              [1, 1, 2, 1, 1],
-              [1, 1, 2, 1, 1],
+                [1, 1, 2, 1, 1, 1],
+                [1, 1, 2, 1, 1, 1],
+                [2, 2, 2, 2, 2, 1],
+                [1, 1, 2, 1, 1, 1],
+                [1, 1, 2, 1, 1, 1],
             ],
             [
-              [2, 1, 1, 1, 2],
-              [1, 2, 1, 2, 1],
-              [1, 1, 2, 1, 1],
-              [1, 2, 1, 2, 1],
-              [2, 1, 1, 1, 2],
+                [2, 1, 1, 1, 2, 1],
+                [1, 2, 1, 2, 1, 1],
+                [1, 1, 2, 1, 1, 1],
+                [1, 2, 1, 2, 1, 1],
+                [2, 1, 1, 1, 2, 1],
             ],
-          ];
-          let brickSelect = Math.floor(Math.random() * 7);
-          bricks = bricksArray[brickSelect];
-        
-        
+        ];
+        let brickSelect = Math.floor(Math.random() * 7);
+        bricks = bricksArray[brickSelect];
+
+
     }
     initbricks();
 }
