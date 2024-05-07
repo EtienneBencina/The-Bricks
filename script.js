@@ -4,7 +4,7 @@ ctx.beginPath();
 ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
 ctx.closePath();
 ctx.fill();
-
+var countBricks=30;
 
 const mariobrick = document.getElementById("mariobrick");
 const question = document.getElementById("question");
@@ -57,19 +57,24 @@ function drawIt() {
 
     }
 
-    function circle(x, y, r) {
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fill();
-    }
+    function start() {
+        Swal.fire({
+          icon: "info",
+          title: "Welcome to the Bricks",
+          text: "press start to begin",
+          confirmButtonText: "Start",
+          confirmButtonColor: "#1f7c98",
+        }).then(function (isConfirm) {
+          if (isConfirm) {
+            init();
+            init_mouse();
+          }
+        });
+      }
 
-    function rect(x, y, w, h) {
-        ctx.beginPath();
-        ctx.rect(x, y, w, h);
-        ctx.closePath();
-        ctx.fill();
-    }
+    
+
+    
 
     function clear() {
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -130,12 +135,17 @@ function drawIt() {
         if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
             dy = -dy; bricks[row][col] = 0;
             tocke += 100; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+            countBricks--;
             $("#tocke").html(tocke);
         }
         else if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 2) {
             dy = -dy; bricks[row][col] = 0;
             tocke += 200; //v primeru, da imajo opeko večjo utež lahko prištevate tudi npr. 2 ali 3; pred tem bi bilo smiselno dodati še kakšen pogoj, ki bi signaliziral mesta opek, ki imajo višjo vrednost
+            countBricks--;
             $("#tocke").html(tocke);
+        }
+        if(countBricks==0){
+            win();
         }
         if (x + dx > WIDTH -10 || x + dx < 0 - 5)
             dx = -dx;
@@ -148,8 +158,10 @@ function drawIt() {
                 dy = -dy;
                 start = true;
             }
-            else if (y + dy > HEIGHT - r)
+            else if (y + dy > HEIGHT - r){
+                lose();
                 clearInterval(intervalId);
+            }
         }
         x += dx;
         y += dy;
@@ -207,6 +219,35 @@ function drawIt() {
     }
     $(document).mousemove(onMouseMove);
 
+    function win() {
+        clearInterval(intervalId);
+        Swal.fire({
+          icon: "success",
+          title: "You win!",
+          text: "Your score was: " + tocke,
+          confirmButtonText: "Try again?",
+          confirmButtonColor: "1f7c98",
+        }).then(function (isConfirm) {
+          if (isConfirm) {
+            location.reload();
+          }
+        });
+      }
+      function lose() {
+        clearInterval(intervalId);
+        Swal.fire({
+          icon: "error",
+          title: "You lose!",
+          text: "Your score was: " + tocke,
+          confirmButtonText: "Try again?",
+          confirmButtonColor: "1f7c98",
+        }).then(function (isConfirm) {
+          if (isConfirm) {
+            location.reload();
+          }
+        });
+      }
+
     init_mouse();
     var bricks;
     var NROWS;
@@ -221,6 +262,7 @@ function drawIt() {
         BRICKWIDTH = 50;
         BRICKHEIGHT = 50;
         PADDING = 1.6;
+        
         bricksArray = [
             [
                 [1, 1, 1, 1, 1, 1],
@@ -230,49 +272,29 @@ function drawIt() {
                 [1, 1, 1, 1, 1, 1],
             ],
             [
-                [2, 1, 2, 1, 2, 1],
-                [1, 2, 1, 2, 1, 1],
-                [2, 1, 2, 1, 2, 1],
-                [1, 2, 1, 2, 1, 1],
-                [2, 1, 2, 1, 2, 1],
-            ],
-            [
-                [2, 1, 2, 1, 2, 1],
-                [2, 1, 2, 1, 2, 1],
-                [2, 1, 2, 1, 2, 1],
-                [2, 1, 2, 1, 2, 1],
-                [2, 1, 2, 1, 2, 1],
-            ],
-            [
-                [2, 2, 2, 2, 2, 1],
+                [2, 1, 1, 1, 1, 2],
+                [1, 2, 1, 1, 2, 1],
+                [1, 1, 2, 2, 1, 1],
                 [1, 1, 1, 1, 1, 1],
-                [2, 2, 2, 2, 2, 1],
                 [1, 1, 1, 1, 1, 1],
-                [2, 2, 2, 2, 2, 1],
             ],
             [
-                [1, 1, 2, 1, 1, 1],
-                [1, 2, 1, 2, 1, 1],
-                [2, 1, 1, 1, 2, 1],
-                [1, 2, 1, 2, 1, 1],
-                [1, 1, 2, 1, 1, 1],
+                [1, 1, 2, 2, 1, 1],
+                [1, 2, 1, 1, 2, 1],
+                [2, 1, 1, 1, 1, 2],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
             ],
             [
-                [1, 1, 2, 1, 1, 1],
-                [1, 1, 2, 1, 1, 1],
-                [2, 2, 2, 2, 2, 1],
-                [1, 1, 2, 1, 1, 1],
-                [1, 1, 2, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
+                [2, 2, 2, 2, 2, 2],
+                [1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1],
             ],
-            [
-                [2, 1, 1, 1, 2, 1],
-                [1, 2, 1, 2, 1, 1],
-                [1, 1, 2, 1, 1, 1],
-                [1, 2, 1, 2, 1, 1],
-                [2, 1, 1, 1, 2, 1],
-            ],
+            
         ];
-        let brickSelect = Math.floor(Math.random() * 7);
+        let brickSelect = Math.floor(Math.random() * 4);
         bricks = bricksArray[brickSelect];
 
 

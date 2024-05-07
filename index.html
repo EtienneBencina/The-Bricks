@@ -4,12 +4,18 @@
 <head>
     <title>The bricks</title>
     <link rel="stylesheet" href="style.css">
+      
 
 </head>
 
-<body onload="drawIt()">
-    <p>Čas: <mark id="cas">00:00</mark></p>
-    <p>Točke: <mark id="tocke">0</mark></p>
+<body>
+    <div id="info">
+        <p>Time: <a id="cas">00:00</a></p>
+        <p>Points: <a id="tocke">0</a></p>
+    </div>
+    <div id="buttons">
+        <button onclick="drawIt()" class="start">START</button>
+    </div>
     <div id="kanvas">
         <canvas id="canvas" width="312" height="770">
             <img src="slike/mariobrick.png" id="mariobrick">
@@ -25,4 +31,5 @@
 
 <script src="script.js"></script>
 <script src="jQuery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
