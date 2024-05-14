@@ -9,6 +9,7 @@ body{
 }
 
 #canvas{
+    margin-top: 5%;
     visibility: hidden;
     position: relative;
     border: 6px solid #2c2923;
@@ -18,6 +19,7 @@ body{
     
 }
 #kanvas{
+    margin-top: 5%;
     position: relative;
     margin: auto;
     text-align: center;
@@ -79,6 +81,6 @@ h1{
 }
 #title{
     position: absolute;
-    margin-left: 20%;
+    margin-left: 23%;
     margin-top: 15%;
 }
