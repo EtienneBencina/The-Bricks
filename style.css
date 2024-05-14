@@ -27,7 +27,7 @@ body{
 #info{
     position: absolute;
     font-family: mario;
-    
+    visibility: hidden;
     margin-left: 30%;
     
     font-size: 23px;
@@ -70,3 +70,15 @@ body{
     
     font-family: mario;
   }
+
+h1{
+    font-family: mario;
+    font-size: 80px;
+    color:rgb(218, 14, 14);
+    text-shadow: 2px 2px 2px black;
+}
+#title{
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 15%;
+}

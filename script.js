@@ -17,6 +17,8 @@ function drawIt() {
     document.getElementById("start").disabled=true;
     document.getElementById("canvas").style.visibility="visible";
     document.getElementById("start").style.visibility="hidden";
+    document.getElementById("title").style.visibility="hidden";
+    document.getElementById("info").style.visibility="visible";
     var x = canvas.width / 2;
     var y = 350;
     var dx = 0;
