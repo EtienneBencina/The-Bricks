@@ -1,7 +1,7 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 ctx.beginPath();
-ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
+//ctx.arc(75, 75, 10, 0, Math.PI * 2, true);
 ctx.closePath();
 ctx.fill();
 var countBricks=30;
@@ -10,11 +10,13 @@ const mariobrick = document.getElementById("mariobrick");
 const question = document.getElementById("question");
 const paddle = document.getElementById("paddle");
 const ball = document.getElementById("ball");
-const redbrick = document.getElementById("redbrick");
-const bluebrick = document.getElementById("bluebrick");
+
 
 
 function drawIt() {
+    document.getElementById("start").disabled=true;
+    document.getElementById("canvas").style.visibility="visible";
+    document.getElementById("start").style.visibility="hidden";
     var x = canvas.width / 2;
     var y = 350;
     var dx = 0;
@@ -30,6 +32,7 @@ function drawIt() {
     var intTimer;
     var izpisTimer;
     var start = true;
+    
     function timer() {
         if (start == true) {
             sekunde++;
@@ -57,20 +60,7 @@ function drawIt() {
 
     }
 
-    function start() {
-        Swal.fire({
-          icon: "info",
-          title: "Welcome to the Bricks",
-          text: "press start to begin",
-          confirmButtonText: "Start",
-          confirmButtonColor: "#1f7c98",
-        }).then(function (isConfirm) {
-          if (isConfirm) {
-            init();
-            init_mouse();
-          }
-        });
-      }
+    
 
     
 
@@ -81,6 +71,7 @@ function drawIt() {
     }
     //END LIBRARY CODE
     function draw() {
+        
         clear();
         ctx.drawImage(ball, x, y, 16, 16);
         //premik ploščice levo in desno
@@ -222,11 +213,13 @@ function drawIt() {
     function win() {
         clearInterval(intervalId);
         Swal.fire({
+            
           icon: "success",
           title: "You win!",
           text: "Your score was: " + tocke,
+          
           confirmButtonText: "Try again?",
-          confirmButtonColor: "1f7c98",
+          confirmButtonColor: "#505050",
         }).then(function (isConfirm) {
           if (isConfirm) {
             location.reload();
@@ -236,11 +229,12 @@ function drawIt() {
       function lose() {
         clearInterval(intervalId);
         Swal.fire({
+            
           icon: "error",
           title: "You lose!",
           text: "Your score was: " + tocke,
           confirmButtonText: "Try again?",
-          confirmButtonColor: "1f7c98",
+          confirmButtonColor: "#505050",
         }).then(function (isConfirm) {
           if (isConfirm) {
             location.reload();
